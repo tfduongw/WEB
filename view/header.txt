@@ -1,0 +1,162 @@
+<?php
+$tenDangNhap = '';
+
+if(isset($isLoggedIn) && $isLoggedIn){
+  $tenDangNhap = $_SESSION['tenDangNhap']; 
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../view/js/modal.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="../view/img/DMTD-Food-Logo.jpg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../view/css/style.css" />
+    <title>DMTD FOOD</title>
+    <style>
+/* Action dropdown styling */
+.action .item {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hide dropdown by default */
+.action .item .item_menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+  border-radius: 4px;
+  padding: 8px 0;
+  margin-top: 5px;
+}
+
+/* Only show dropdown on hover for the user icon */
+.action .item:has(.fa-regular.fa-user):hover .item_menu {
+  display: block;
+}
+
+/* Remove default list styling */
+.action .item_menu li {
+  list-style: none;
+}
+
+/* Style menu links to prevent wrapping */
+.action .item_menu li a {
+  color: #333;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.action .item_menu li a:hover {
+  color: #f37319;
+}
+
+/* Add a small arrow to indicate dropdown only for user icon */
+.action .item:has(.fa-regular.fa-user) > a::after {
+  content: '';
+  display: inline-block;
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  vertical-align: middle;
+}
+
+/* User name styling if logged in */
+.action .item span {
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Add a triangle pointer to the dropdown */
+.action .item_menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+</style>
+</head>
+<body>
+<div class="header-banner">60 phút - Giao ngay tận nơi</div>
+    <!-- header  -->
+    <header class="header-top">
+      <div class="container">
+        <div class="logo">
+          <a href="#" class="logo-img"
+            ><img height="70" src="../view/img/DMTD-Food-Logo.jpg" alt="Logo"
+          /></a>
+          <span><b>DMTD FOOD</b></span>
+        </div>
+
+        <div class="action">
+          <div class="item">
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <?php if(isset($isLoggedIn) && $isLoggedIn): ?>
+              <span><?php echo $tenDangNhap; ?></span>
+            <?php endif; ?>
+            <ul class="item_menu">
+              <?php if(isset($isLoggedIn) && $isLoggedIn): ?>
+                <li class="heder_item_user">
+                  <a href="../view/info.php">Thông tin cá nhân</a>
+                </li>
+                <li class="heder_item_user">
+                  <a href="../controller/index.php?act=xemhoadon">Xem hóa đơn</a>
+                </li>
+                <li class="heder_item_user">
+                  <a href="../view/logOut.php">Đăng xuất</a>
+                </li>
+              <?php else: ?>
+                <li class="heder_item_user">
+                  <a href="../view/signIn.php">Đăng nhập</a>
+                </li>
+                <li class="heder_item_user">
+                  <a href="../view/signUp.php">Đăng ký</a>
+                </li>
+              <?php endif; ?>
+            </ul>
+          </div>
+          <div class="item">
+            <a href="../view/cart.php"
+              ><i class="fa-solid fa-cart-shopping"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- header  -->
+    <nav>
+  <ul>
+    <li><a href="../controller/index.php">Trang chủ</a></li>
+    <li><a href="../controller/index.php?MaLoaiSP=1">Món mặn</a></li>
+    <li><a href="../controller/index.php?MaLoaiSP=2">Món chay</a></li>
+    <li><a href="../controller/index.php?MaLoaiSP=3">Món lẩu</a></li>
+    <li><a href="../controller/index.php?MaLoaiSP=4">Nước uống</a></li>
+  </ul>
+</nav>
